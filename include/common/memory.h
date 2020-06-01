@@ -22,6 +22,13 @@
 #ifndef __MEMORY_H__
 #define __MEMORY_H__
 
+#include <stdint.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+#define BASE_16 (16)
+#define BASE_10 (10)
+
 /**
  * @brief Sets a value of a data array 
  *
@@ -88,6 +95,70 @@ void set_all(char * ptr, char value, unsigned int size);
  *
  * @return void.
  */
+ 
+ uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length);
+
+/**
+* @brief function to copies length number of bytes from source to destination
+*
+* This function takes two byte pointers (one source and one destination) 
+* and a length of bytes to move from the source location to the destination.
+* The areas may not overlap. Use my_memmove in case there is and overlap to avoid corrupting data.
+*
+* @return pointer to destination
+*/
+uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length);
+
+/**
+* @brief function to set all locations starting from a source address to a given value
+*
+* This should take a pointer to a source memory location, a length in bytes and set 
+* all locations of that memory to a given value.
+*
+* @return pointer to starting address
+*/
+uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value);
+
+
+/**
+* @brief function to set all locations starting from a source address to a zero
+*
+* This should take a pointer to a source memory location, a length in bytes and set 
+* all locations of that memory 0.
+*
+* @return pointer to starting address
+*/
+uint8_t * my_memzero(uint8_t * src, size_t length);
+
+/**
+* @brief function to reverse the order of bytes.
+*
+* This should take a pointer to a memory location and a length in bytes and 
+* reverse the order of all of the bytes.
+*
+* @return pointer to starting address of the memory location.
+*/
+uint8_t * my_reverse(uint8_t * src, size_t length);
+
+/**
+* @brief function should take number of words to allocate in dynamic memory
+*
+* This should take number of words to allocate in dynamic memory. 
+* Should return a pointer to memory if successful, or a Null Pointer if not successful.
+*
+* @return 
+*/
+int32_t * reserve_words(size_t length);
+
+/**
+* @brief function Should free a dynamic memory allocation by providing the pointer src to the function
+*
+* @return void
+*/
+void free_words(uint32_t * src);
+
+
 void clear_all(char * ptr, unsigned int size);
 
 #endif /* __MEMORY_H__ */
+
